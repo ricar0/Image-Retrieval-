@@ -89,9 +89,7 @@ def match_pic(e_entry):
     accuracy.append(Acnumber/10)
     print("准确度:"+str(Acnumber*10)+"%")
 
-    # 显示查询结果
-    # print(res_reg)
-    # imagesearch.plot_results(src,res_reg[:8]) #常规查询
+    #设置字体
     plt.rcParams['font.sans-serif'] = ['SimHei']
 
     cnt = 1
