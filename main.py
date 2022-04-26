@@ -97,8 +97,6 @@ def match_pic(e_entry):
     cnt = 1
     for idx in range(nbr_results):
         plt.subplot(3, 4, cnt)
-        # print(item)
-        cv2.waitKey(0)
         pic = plt.imread(imlist[res_reg[idx]])
         plt.imshow(pic)
         plt.title(str(carlist[idx]))
@@ -161,9 +159,6 @@ def windows():
     b4 = tkinter.Button(rt, text='绘图', width=15,
                         height=2, command=draw)
     b4.pack()
-    # image = Image.open(file_path)
-    # plt.imshow(image)
-    # plt.show()
 
     rt.mainloop()
 
@@ -173,6 +168,7 @@ if __name__ == '__main__':
     with open('train/vocabulary.pkl', 'rb') as f:
         voc = pickle.load(f)
     src = imagesearch.Searcher('testImaAdd.db', voc)
+
     windows()
 
 
