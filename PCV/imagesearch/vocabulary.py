@@ -13,7 +13,7 @@ class Vocabulary(object):
         self.trainingdata = []
         self.nbr_words = 0
     
-    def train(self,featurefiles,k=10,subsampling=10):
+    def train(self,featurefiles,k,subsampling):
         """ Train a vocabulary from features in files listed 
             in featurefiles using k-means with k number of words. 
             Subsampling of training data can be used for speedup. """
@@ -24,11 +24,11 @@ class Vocabulary(object):
         descr.append(sift.read_features_from_file(featurefiles[0])[1])
         descriptors = descr[0] #stack all features for k-means
         for i in arange(1,nbr_images):
-            descr.append(sift.read_features_from_file(featurefiles[i])[1])
-            descriptors = vstack((descriptors,descr[i]))
-            
+            descr.append(sift.read_features_from_file(featurefiles[i])[1]) #128维向量
+            descriptors = vstack((descriptors,descr[i])) #合并成一列
+
         # k-means: last number determines number of runs
-        self.voc,distortion = kmeans(descriptors[::subsampling,:],k,1)
+        self.voc,distortion = kmeans(descriptors[::subsampling,:],k,5) # 映射表,损失率
         self.nbr_words = self.voc.shape[0]
         
         # go through all training images and project on vocabulary

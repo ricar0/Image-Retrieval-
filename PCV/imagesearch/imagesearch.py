@@ -98,6 +98,7 @@ class Searcher(object):
             "select histogram from imhistograms where rowid='%d'" % im_id).fetchone()
 
         # use pickle to decode NumPy arrays from string
+        # print(len(pickle.loads(s[0])))
         return pickle.loads((s[0]))
 
     def candidates_from_word(self, imword):
@@ -111,7 +112,7 @@ class Searcher(object):
         """ Get list of images with similar words. """
 
         # get the word ids
-        words = imwords.nonzero()[0]
+        words = imwords.nonzero()[0] #找到非0下标
 
         # find candidates
         candidates = []
@@ -129,17 +130,18 @@ class Searcher(object):
 
     def query(self, imname):
         """ Find a list of matching images for imname. """
-        h = self.get_imhistogram(imname)
+        h = self.get_imhistogram(imname)#当前图片的直方向量
 
-        candidates = self.candidates_from_histogram(h)
+        candidates = self.candidates_from_histogram(h)#查找候选图
 
         matchscores = []
         for imid in candidates:
             # get the name
             cand_name = self.con.execute(
                 "select filename from imlist where rowid=%d" % imid).fetchone()
+
             cand_h = self.get_imhistogram(cand_name)
-            cand_dist = sqrt(sum(self.voc.idf * (h - cand_h) ** 2))
+            cand_dist = sqrt(sum(self.voc.idf * (h - cand_h) ** 2))  # 计算直方图间欧式距离
             matchscores.append((cand_dist, imid))
 
         # return a sorted list of distances and database ids
