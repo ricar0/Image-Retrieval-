@@ -1,6 +1,12 @@
 # Image-Retrieval-
 应用Bof+visual vocabulary+4TF-IDF算法的图像检索程序
 
+
+## 使用说明
+
+修改下列地址
+![image](https://user-images.githubusercontent.com/72118993/224715303-b22b1c51-436b-4172-9bcd-dd4dacd6474a.png)
+
 ## 开发环境
 - Windows
 
