@@ -5,7 +5,14 @@
 ## 使用说明
 
 修改下列地址
+
+- main.py
+
 ![image](https://user-images.githubusercontent.com/72118993/224715303-b22b1c51-436b-4172-9bcd-dd4dacd6474a.png)
+
+- sift.py
+
+![image](https://user-images.githubusercontent.com/72118993/224716035-1b89c5b7-1fe3-4610-87e7-ad04588e48d4.png)
 
 ## 开发环境
 - Windows
